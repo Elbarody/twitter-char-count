@@ -1,4 +1,4 @@
-package com.elbarody.twitterpostcounter.ui.theme
+package com.elbarody.base.theme
 
 import android.app.Activity
 import android.os.Build

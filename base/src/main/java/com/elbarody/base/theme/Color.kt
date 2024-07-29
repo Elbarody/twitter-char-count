@@ -1,4 +1,4 @@
-package com.elbarody.twitterpostcounter.ui.theme
+package com.elbarody.base.theme
 
 import androidx.compose.ui.graphics.Color
 
