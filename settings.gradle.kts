@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Twitter Post Counter"
 include(":app")
 include(":base")
+include(":post-counter")
