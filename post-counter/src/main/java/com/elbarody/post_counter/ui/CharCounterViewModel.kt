@@ -1,9 +1,9 @@
 package com.elbarody.post_counter.ui
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import androidx.compose.ui.text.input.TextFieldValue
+import com.elbarody.base.constant.Constants.MAX_CHAR_COUNT
+import com.elbarody.base.helpers.copyTextToClipboard
 import com.elbarody.base.mvi.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -39,8 +39,8 @@ class CharCounterViewModel @Inject constructor(private val context: Context) :
     private fun updateTweetText(newText: TextFieldValue) {
         val characterCount = newText.text.length
         val remainingCount = 280 - characterCount
-        val isCharacterLimitExceeded = characterCount > 280
-        val isTweetButtonEnabled = characterCount in 1..280
+        val isCharacterLimitExceeded = characterCount > MAX_CHAR_COUNT
+        val isTweetButtonEnabled = characterCount in 1..MAX_CHAR_COUNT
 
         setState {
             copy(
@@ -60,9 +60,7 @@ class CharCounterViewModel @Inject constructor(private val context: Context) :
     }
 
     private fun copyText() {
-        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("Tweet Text", uiState.value.tweetText.text)
-        clipboard.setPrimaryClip(clip)
+        copyTextToClipboard(uiState.value.tweetText.text, context)
     }
 
     private fun clearText() {

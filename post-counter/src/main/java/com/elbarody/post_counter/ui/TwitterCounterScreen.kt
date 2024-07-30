@@ -39,6 +39,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.elbarody.base.compose.AppScaffold
 import com.elbarody.base.compose.DefaultButton
 import com.elbarody.base.compose.TwitterCounterTopBar
+import com.elbarody.base.constant.Constants
+import com.elbarody.base.constant.Constants.MAX_CHAR_COUNT
 import com.elbarody.base.theme.Blue300
 import com.elbarody.base.theme.Blue500
 import com.elbarody.base.theme.DarkGray
@@ -107,7 +109,7 @@ fun TwitterCounterContent(
 
             CounterItem(
                 stringResource(R.string.characters_typed),
-                stringResource(R.string.char_count_format, viewTwitterPostUiState.characterCount)
+                stringResource(R.string.char_count_format, viewTwitterPostUiState.characterCount, MAX_CHAR_COUNT)
             )
 
             CounterItem(
@@ -231,7 +233,7 @@ fun TwitterPostTextField(
 @Composable
 fun TwitterPlaceHolder() {
     Text(
-        text = stringResource(R.string.typing_hint),
+        text = stringResource(R.string.typing_hint, MAX_CHAR_COUNT),
         style = Typography.bodySmall.copy(color = Gray800)
     )
 }
