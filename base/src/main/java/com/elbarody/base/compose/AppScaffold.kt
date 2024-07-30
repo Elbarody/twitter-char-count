@@ -9,12 +9,14 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun AppScaffold(
+    topBar: @Composable () -> Unit = {},
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colorScheme.background,
     contentColor: Color = MaterialTheme.colorScheme.onBackground,
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
+        topBar = topBar,
         modifier = modifier,
         containerColor = backgroundColor,
         contentColor = contentColor,

@@ -12,6 +12,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -63,4 +66,5 @@ dependencies {
 
     // Lifecycle
     implementation(libs.androidx.lifecycle.runtime.compose)
+    debugImplementation(libs.ui.tooling)
 }
