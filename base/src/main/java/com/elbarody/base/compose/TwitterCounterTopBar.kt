@@ -28,12 +28,11 @@ import com.elbarody.base.utils.Dimens
 
 @Composable
 fun TwitterCounterTopBar(onBackClick: () -> Unit) {
-    Column {
+    Column (modifier = Modifier.padding(top = Dimens.fourLevelPadding).background(Color.White)){
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(Dimens.fourLevelPadding),
+                .padding(Dimens.fourLevelPadding)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
