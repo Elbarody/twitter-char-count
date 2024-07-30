@@ -1,12 +1,15 @@
 package com.elbarody.post_counter.ui
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.compose.ui.text.input.TextFieldValue
 import com.elbarody.base.mvi.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CharCounterViewModel @Inject constructor() :
+class CharCounterViewModel @Inject constructor(private val context: Context) :
     BaseViewModel<TwitterCounterContract.Event, TwitterCounterContract.TwitterPostUiState>() {
 
     override fun createInitialState(): TwitterCounterContract.TwitterPostUiState {
@@ -57,7 +60,9 @@ class CharCounterViewModel @Inject constructor() :
     }
 
     private fun copyText() {
-
+        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Tweet Text", uiState.value.tweetText.text)
+        clipboard.setPrimaryClip(clip)
     }
 
     private fun clearText() {
