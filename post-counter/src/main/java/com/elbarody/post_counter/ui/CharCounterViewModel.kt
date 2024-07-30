@@ -1,16 +1,23 @@
 package com.elbarody.post_counter.ui
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.lifecycle.viewModelScope
 import com.elbarody.base.constant.Constants.MAX_CHAR_COUNT
 import com.elbarody.base.helpers.copyTextToClipboard
 import com.elbarody.base.mvi.BaseViewModel
+import com.elbarody.data.model.TweetRequest
+import com.elbarody.data.remote.helper.Response
+import com.elbarody.data.repository.PostTweetRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CharCounterViewModel @Inject constructor(private val context: Context) :
-    BaseViewModel<TwitterCounterContract.Event, TwitterCounterContract.TwitterPostUiState>() {
+class CharCounterViewModel @Inject constructor(
+    private val context: Context, private val postTweetRepository: PostTweetRepository
+) : BaseViewModel<TwitterCounterContract.Event, TwitterCounterContract.TwitterPostUiState>() {
 
     override fun createInitialState(): TwitterCounterContract.TwitterPostUiState {
         return TwitterCounterContract.TwitterPostUiState()
@@ -23,7 +30,7 @@ class CharCounterViewModel @Inject constructor(private val context: Context) :
             }
 
             is TwitterCounterContract.Event.OnTweetButtonClicked -> {
-                postTweet()
+                postTweet(TweetRequest(uiState.value.tweetText.text))
             }
 
             is TwitterCounterContract.Event.OnCopyTextButtonClicked -> {
@@ -56,7 +63,20 @@ class CharCounterViewModel @Inject constructor(private val context: Context) :
         }
     }
 
-    private fun postTweet() {
+    private fun postTweet(tweetRequest: TweetRequest) {
+        viewModelScope.launch {
+            when (val response = postTweetRepository.invoke(tweetRequest)) {
+                is Response.Success -> {
+                    Toast.makeText(context, "Tweet posted successfully!", Toast.LENGTH_SHORT).show()
+                }
+
+                is Response.Error -> {
+                    Toast.makeText(
+                        context, "Failed to post tweet", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
     private fun copyText() {

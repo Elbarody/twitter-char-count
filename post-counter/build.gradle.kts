@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation(project(":base"))
+    implementation(project(":data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -67,4 +67,8 @@ dependencies {
     // Lifecycle
     implementation(libs.androidx.lifecycle.runtime.compose)
     debugImplementation(libs.ui.tooling)
+
+    // Twitter Kit
+    /*implementation("org.twitter4j:twitter4j-core:4.6.1")
+    implementation("org.twitter4j:twitter4j-auth:4.6.1")*/
 }
