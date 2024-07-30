@@ -28,22 +28,22 @@ fun DefaultButton(
     enabled: Boolean = true,
     color: Color = Blue,
     contentColor: Color = White,
+    disabledBackgroundColor: Color = White,
     minHeight: Dp = 40.dp,
 ) {
 
-    val bgColor = if (enabled) color else Gray200
-    val contentColorStatus = if (enabled) contentColor else Black
+    val bgColor = if (enabled) color else disabledBackgroundColor
     Button(
         onClick = { if (enabled) onClick() },
         modifier = modifier.heightIn(min = minHeight),
         colors = ButtonDefaults.buttonColors(
-            containerColor = bgColor, contentColor = contentColorStatus
+            containerColor = bgColor, contentColor = contentColor
         ),
         shape = RoundedCornerShape(Dimens.threeLevelPadding)
     ) {
         Text(
             text = text,
-            style = Typography.titleLarge.copy(fontSize = 18.sp, color = contentColorStatus),
+            style = Typography.titleLarge.copy(fontSize = 18.sp, color = contentColor),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
