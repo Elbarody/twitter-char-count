@@ -24,6 +24,11 @@ retrofit = "2.9.0"
 ui = "1.7.0-beta01"
 material3Android = "1.2.1"
 uiTooling = "1.6.8"
+mockitoCore = "4.8.0"
+mockitoInline = "4.6.1"
+mockitoKotlin = "2.2.0"
+kotlinxCoroutinesTest = "1.7.3"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,6 +61,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+mockito-kotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
